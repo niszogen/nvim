@@ -25,6 +25,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" },
 })
 
 local builtin = require('telescope.builtin')
@@ -57,3 +58,5 @@ vim.lsp.enable({ "lua_ls", "clangd", "ts_ls", "zls" })
 
 vim.cmd("colorscheme catppuccin-mocha")
 require('lualine').setup()
+vim.opt.termguicolors = true
+require('nvim-highlight-colors').setup({})

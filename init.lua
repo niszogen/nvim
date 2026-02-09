@@ -12,6 +12,8 @@ vim.keymap.set('n', '<leader>w', ':write<CR>')
 -- 	vim.cmd("write")
 -- end)
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>pu', vim.pack.update)
+
 vim.pack.add({
 	{ src = "https://github.com/catppuccin/nvim" },
 	{ src = "http://github.com/stevearc/oil.nvim" },

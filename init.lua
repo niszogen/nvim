@@ -1,7 +1,12 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.signcolumn = "yes"
-vim.opt.tabstop = 4
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.scrolloff = 2
+vim.o.signcolumn = "yes"
+vim.o.tabstop = 4
+vim.o.smartindent = true
+vim.o.autoindent = true
+vim.o.mouse = "a"
 vim.g.mapleader = " "
 vim.o.winborder = "rounded"
 

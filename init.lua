@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
@@ -21,13 +24,15 @@ vim.keymap.set('n', '<leader>pu', vim.pack.update)
 
 vim.pack.add({
 	{ src = "https://github.com/catppuccin/nvim" },
-	{ src = "http://github.com/stevearc/oil.nvim" },
+	-- { src = "http://github.com/stevearc/oil.nvim" },
+	{ src = 'https://github.com/nvim-tree/nvim-tree.lua' },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/nvim-mini/mini.completion" },
+	{ src = "https://github.com/nvim-mini/mini.notify" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
@@ -36,14 +41,18 @@ vim.pack.add({
 })
 
 local builtin = require('telescope.builtin')
-require "oil".setup()
+-- require "oil".setup()
+require('nvim-tree').setup()
 require('mini.completion').setup()
+require('mini.notify').setup()
 
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-vim.keymap.set('n', '<leader>e', ":Oil<CR>")
+vim.keymap.set("n", "<leader>e", function()
+	require("nvim-tree.api").tree.toggle()
+end, { desc = "Toggle NvimTree" })
 
 require 'nvim-treesitter'.setup({
 	ensure_installed = { "lua", "c", "cpp", "typescript", "javascript", "zig", "vim", "vimdoc", "query" },

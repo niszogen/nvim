@@ -1,6 +1,5 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
@@ -19,8 +18,8 @@ vim.keymap.set('n', '<leader>w', ':write<CR>')
 -- 	vim.lsp.buf.format()
 -- 	vim.cmd("write")
 -- end)
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
-vim.keymap.set('n', '<leader>pu', vim.pack.update)
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { desc = 'LSP format' })
+vim.keymap.set('n', '<leader>pu', vim.pack.update, { desc = 'vim.pack update' })
 
 vim.pack.add({
 	{ src = "https://github.com/catppuccin/nvim" },
@@ -38,6 +37,8 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" },
+	{ src = "https://github.com/windwp/nvim-autopairs" },
+	{ src = "https://github.com/folke/flash.nvim" },
 })
 
 local builtin = require('telescope.builtin')
@@ -76,3 +77,9 @@ vim.cmd("colorscheme catppuccin-mocha")
 require('lualine').setup()
 vim.opt.termguicolors = true
 require('nvim-highlight-colors').setup({})
+require("nvim-autopairs").setup {}
+require("flash").setup()
+
+vim.keymap.set({ "n", "x", "o" }, "s", function()
+	require("flash").jump()
+end, { desc = "Flash" })

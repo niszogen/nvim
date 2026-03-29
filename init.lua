@@ -56,7 +56,7 @@ vim.keymap.set("n", "<leader>e", function()
 end, { desc = "Toggle NvimTree" })
 
 require 'nvim-treesitter'.setup({
-	ensure_installed = { "lua", "c", "cpp", "typescript", "javascript", "zig", "vim", "vimdoc", "query" },
+	ensure_installed = { "lua", "c", "cpp", "typescript", "javascript", "zig", "vim", "vimdoc", "query", "java" },
 
 	sync_install = false,
 
@@ -71,7 +71,7 @@ require 'nvim-treesitter'.setup({
 	},
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "ts_ls", "zls" })
+vim.lsp.enable({ "lua_ls", "clangd", "ts_ls", "zls", "jdtls" })
 
 vim.cmd("colorscheme catppuccin-mocha")
 require('lualine').setup()

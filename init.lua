@@ -1,25 +1,35 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
 vim.o.scrolloff = 2
 vim.o.signcolumn = "yes"
-vim.o.tabstop = 4
+
 vim.o.smartindent = true
 vim.o.autoindent = true
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.smarttab = true
+
 vim.o.mouse = "a"
 vim.g.mapleader = " "
 vim.o.winborder = "rounded"
 
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
-vim.keymap.set('n', '<leader>w', ':write<CR>')
+vim.keymap.set('n', '<leader>w', vim.cmd.write)
 -- vim.keymap.set('n', '<leader>wf', function()
 -- 	vim.lsp.buf.format()
 -- 	vim.cmd("write")
 -- end)
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { desc = 'LSP format' })
 vim.keymap.set('n', '<leader>pu', vim.pack.update, { desc = 'vim.pack update' })
+
+vim.keymap.set('n', '<leader>+', vim.cmd.vsplit, { desc = 'Vertical split'})
+vim.keymap.set('n', '<leader>-', vim.cmd.split, { desc = 'Horizontal split' })
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 vim.pack.add({
 	{ src = "https://github.com/catppuccin/nvim" },

@@ -18,7 +18,7 @@ vim.g.mapleader = " "
 vim.o.winborder = "rounded"
 
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
-vim.keymap.set('n', '<leader>w', vim.cmd.write)
+vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = 'Write to file'})
 -- vim.keymap.set('n', '<leader>wf', function()
 -- 	vim.lsp.buf.format()
 -- 	vim.cmd("write")
@@ -26,7 +26,7 @@ vim.keymap.set('n', '<leader>w', vim.cmd.write)
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { desc = 'LSP format' })
 vim.keymap.set('n', '<leader>pu', vim.pack.update, { desc = 'vim.pack update' })
 
-vim.keymap.set('n', '<leader>+', vim.cmd.vsplit, { desc = 'Vertical split'})
+vim.keymap.set('n', '<leader>+', vim.cmd.vsplit, { desc = 'Vertical split' })
 vim.keymap.set('n', '<leader>-', vim.cmd.split, { desc = 'Horizontal split' })
 vim.o.splitright = true
 vim.o.splitbelow = true

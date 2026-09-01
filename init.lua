@@ -18,7 +18,7 @@ vim.g.mapleader = " "
 vim.o.winborder = "rounded"
 
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
-vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = 'Write to file'})
+vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = 'Write to file' })
 -- vim.keymap.set('n', '<leader>wf', function()
 -- 	vim.lsp.buf.format()
 -- 	vim.cmd("write")
@@ -82,6 +82,22 @@ require 'nvim-treesitter'.setup({
 })
 
 vim.lsp.enable({ "lua_ls", "clangd", "ts_ls", "zls", "jdtls" })
+
+vim.diagnostic.config({
+	virtual_text = {
+		prefix = "●",
+		spacing = 4,
+		source = "if_many",
+	},
+	signs = true,
+	underline = true,
+	update_in_insert = true,
+	severity_sort = true,
+	float = {
+		border = "rounded",
+		source = "always",
+	},
+})
 
 vim.cmd("colorscheme catppuccin-mocha")
 require('lualine').setup()

@@ -7,6 +7,7 @@ vim.o.cursorline = true
 vim.o.scrolloff = 2
 vim.o.signcolumn = "yes"
 
+vim.o.expandtab = false
 vim.o.smartindent = true
 vim.o.autoindent = true
 vim.o.shiftwidth = 4
@@ -49,6 +50,7 @@ vim.pack.add({
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/folke/flash.nvim" },
+	-- { src = "https://github.com/vyfor/cord.nvim" },
 })
 
 local builtin = require('telescope.builtin')
@@ -89,7 +91,7 @@ vim.diagnostic.config({
 		spacing = 4,
 		source = "if_many",
 	},
-	signs = true,
+	signs = false,
 	underline = true,
 	update_in_insert = true,
 	severity_sort = true,

@@ -6,6 +6,7 @@ vim.o.relativenumber = true
 vim.o.cursorline = true
 vim.o.scrolloff = 2
 vim.o.signcolumn = "yes"
+vim.o.termguicolors = true
 
 vim.o.expandtab = false
 vim.o.smartindent = true
@@ -58,7 +59,15 @@ local builtin = require('telescope.builtin')
 require('nvim-tree').setup()
 require('mini.completion').setup()
 require('mini.notify').setup()
+require('lualine').setup()
+require('nvim-highlight-colors').setup()
+require("nvim-autopairs").setup()
+require("flash").setup()
 
+vim.keymap.set("n", "<leader>t", function()
+	vim.cmd("belowright 12split | terminal")
+end, { desc = "Open terminal" })
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
@@ -69,9 +78,7 @@ end, { desc = "Toggle NvimTree" })
 
 require 'nvim-treesitter'.setup({
 	ensure_installed = { "lua", "c", "cpp", "typescript", "javascript", "zig", "vim", "vimdoc", "query", "java" },
-
 	sync_install = false,
-
 	auto_install = true,
 
 	highlight = {
@@ -102,11 +109,6 @@ vim.diagnostic.config({
 })
 
 vim.cmd("colorscheme catppuccin-mocha")
-require('lualine').setup()
-vim.opt.termguicolors = true
-require('nvim-highlight-colors').setup({})
-require("nvim-autopairs").setup {}
-require("flash").setup()
 
 vim.keymap.set({ "n", "x", "o" }, "s", function()
 	require("flash").jump()

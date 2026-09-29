@@ -42,7 +42,8 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/folke/which-key.nvim" },
-	{ src = "https://github.com/nvim-mini/mini.completion" },
+	-- { src = "https://github.com/nvim-mini/mini.completion" },
+	{ src = "https://github.com/ms-jpq/coq_nvim" },
 	{ src = "https://github.com/nvim-mini/mini.notify" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
@@ -57,7 +58,8 @@ vim.pack.add({
 local builtin = require('telescope.builtin')
 -- require "oil".setup()
 require('nvim-tree').setup()
-require('mini.completion').setup()
+-- require('mini.completion').setup()
+require('coq').setup()
 require('mini.notify').setup()
 require('lualine').setup()
 require('nvim-highlight-colors').setup()

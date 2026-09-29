@@ -47,6 +47,8 @@ vim.pack.add({
 	{ src = "https://github.com/brenoprata10/nvim-highlight-colors" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/folke/flash.nvim" },
+	{ src = "https://github.com/SmiteshP/nvim-navic" },
+	{ src = "https://github.com/utilyre/barbecue.nvim" },
 	-- { src = "https://github.com/vyfor/cord.nvim" },
 })
 
@@ -66,6 +68,7 @@ require('mini.notify').setup()
 require('lualine').setup()
 require('nvim-highlight-colors').setup()
 require("nvim-autopairs").setup()
+require("barbecue").setup()
 
 require("flash").setup()
 vim.keymap.set({ "n", "x", "o" }, "s", function()

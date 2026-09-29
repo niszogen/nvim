@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "barbecue.nvim": {
+      "rev": "3e31404f0b93a2c30d151abf0648650ac811c664",
+      "src": "https://github.com/utilyre/barbecue.nvim"
+    },
     "coq_nvim": {
       "rev": "0cdbf99893729c5ffa74064382efc53364d7045d",
       "src": "https://github.com/ms-jpq/coq_nvim"
@@ -39,6 +43,10 @@
     "nvim-lspconfig": {
       "rev": "a9bb4d5f4276aa5cddc015faa3ecc5a7b5a26b14",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-navic": {
+      "rev": "455808fd0fae06e6d70fadfd61432275db8f34ce",
+      "src": "https://github.com/SmiteshP/nvim-navic"
     },
     "nvim-tree.lua": {
       "rev": "478c69c0fe253caea88de9c5e138bfa77395a59a",

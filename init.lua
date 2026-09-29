@@ -19,12 +19,9 @@ vim.o.mouse = "a"
 vim.g.mapleader = " "
 vim.o.winborder = "rounded"
 
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = 'Write to file' })
--- vim.keymap.set('n', '<leader>wf', function()
--- 	vim.lsp.buf.format()
--- 	vim.cmd("write")
--- end)
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { desc = 'LSP format' })
 vim.keymap.set('n', '<leader>pu', vim.pack.update, { desc = 'vim.pack update' })
 
@@ -35,14 +32,12 @@ vim.o.splitbelow = true
 
 vim.pack.add({
 	{ src = "https://github.com/catppuccin/nvim" },
-	-- { src = "http://github.com/stevearc/oil.nvim" },
 	{ src = 'https://github.com/nvim-tree/nvim-tree.lua' },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/folke/which-key.nvim" },
-	-- { src = "https://github.com/nvim-mini/mini.completion" },
 	{ src = "https://github.com/ms-jpq/coq_nvim" },
 	{ src = "https://github.com/nvim-mini/mini.notify" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -56,40 +51,40 @@ vim.pack.add({
 })
 
 local builtin = require('telescope.builtin')
--- require "oil".setup()
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
 require('nvim-tree').setup()
--- require('mini.completion').setup()
+vim.keymap.set("n", "<leader>e", function()
+	require("nvim-tree.api").tree.toggle()
+end, { desc = "Toggle NvimTree" })
+
 require('coq').setup()
 require('mini.notify').setup()
 require('lualine').setup()
 require('nvim-highlight-colors').setup()
 require("nvim-autopairs").setup()
+
 require("flash").setup()
+vim.keymap.set({ "n", "x", "o" }, "s", function()
+	require("flash").jump()
+end, { desc = "Flash" })
 
 vim.keymap.set("n", "<leader>t", function()
 	vim.cmd("belowright 12split | terminal")
 end, { desc = "Open terminal" })
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-vim.keymap.set("n", "<leader>e", function()
-	require("nvim-tree.api").tree.toggle()
-end, { desc = "Toggle NvimTree" })
 
-require 'nvim-treesitter'.setup({
-	ensure_installed = { "lua", "c", "cpp", "typescript", "javascript", "zig", "vim", "vimdoc", "query", "java" },
-	sync_install = false,
-	auto_install = true,
+require("nvim-treesitter").install({
+	"lua", "c", "cpp", "typescript", "javascript",
+	"zig", "vim", "vimdoc", "query", "java",
+})
 
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
-	indent = {
-		enable = true
-	},
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(args)
+		pcall(vim.treesitter.start, args.buf)
+	end,
 })
 
 vim.lsp.enable({ "lua_ls", "clangd", "ts_ls", "zls", "jdtls" })
@@ -111,7 +106,3 @@ vim.diagnostic.config({
 })
 
 vim.cmd("colorscheme catppuccin-mocha")
-
-vim.keymap.set({ "n", "x", "o" }, "s", function()
-	require("flash").jump()
-end, { desc = "Flash" })

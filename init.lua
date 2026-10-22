@@ -66,10 +66,13 @@ end, { desc = "Toggle NvimTree" })
 
 require('coq').setup()
 require('mini.notify').setup()
-require('lualine').setup()
 require('nvim-highlight-colors').setup()
 require("nvim-autopairs").setup()
-require("barbecue").setup()
+
+if ! vim.g.vscode then
+	require('lualine').setup()
+	require("barbecue").setup()
+end
 
 require("flash").setup()
 vim.keymap.set({ "n", "x", "o" }, "s", function()

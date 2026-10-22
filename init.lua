@@ -90,7 +90,18 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.lsp.enable({ "lua_ls", "clangd", "ts_ls", "zls", "jdtls" })
+local lsp_servers = { "lua_ls", "clangd", "ts_ls", "zls", "jdtls", "muon" }
+vim.lsp.enable(lsp_servers)
+
+local lsp_on = true
+vim.keymap.set("n", "<leader>lt", function()
+	lsp_on = not lsp_on
+	vim.lsp.enable(lsp_servers, lsp_on)
+	if not lsp_on then
+		vim.diagnostic.reset()
+	end
+	vim.notify("LSP " .. (lsp_on and "enabled" or "disabled"))
+end, { desc = "Toggle LSP" })
 
 vim.diagnostic.config({
 	virtual_text = {
@@ -100,7 +111,7 @@ vim.diagnostic.config({
 	},
 	signs = false,
 	underline = true,
-	update_in_insert = true,
+	update_in_insert = false,
 	severity_sort = true,
 	float = {
 		border = "rounded",
